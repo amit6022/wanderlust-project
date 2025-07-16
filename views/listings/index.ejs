@@ -3,20 +3,33 @@
   <style>
     .filters {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
+      justify-content: flex-start; /* Align items to start (left) */
     }
 
     .filter {
       text-align: center;
-      margin-right: 1rem;
+      margin-right: 2rem;
       margin-top: 2rem;
-      opacity: 0.7;
+      box-shadow: 0px 0px 10px wheat;
+      border-radius: 10px;
+      transition: transform 0.5s ease-in-out;
+      transform-origin: center;
+    }
+
+    .filter i {
+      display: inline-block; /* Necessary for width to apply */
+      width: 50px; /* Increase as needed (default icon width ≈ auto) */
+      font-size: 1.5rem; /* Increase size if needed */
+      text-align: center; /* Center the icon inside width */
     }
 
     .filter:hover {
-      opacity: 1;
       cursor: pointer;
+      box-shadow: 4px 4px 15px royalblue;
+      border-radius: 15px;
+      transform: scaleX(1.5); /* Expand horizontally from center */
     }
 
     .tax-info {
@@ -24,13 +37,14 @@
     }
 
     .taxtoggle {
-      border: 1px solid black;
+      /* border: 1px solid black; */
       border-radius: 1rem;
       height: 3.25rem;
       padding: 1rem;
-      margin-left: 2rem;
+      margin-left: auto; /* Push toggle to the far right */
       display: flex;
       align-items: center;
+      box-shadow: 0px 0px 10px wheat;
     }
 
     .filter-link {
@@ -40,80 +54,31 @@
   </style>
 
   <div class="filters">
-    <a class="filter-link" href="/listings/filter">
+    <a class="filter-link" href="/listings/category/Trending">
       <div class="filter">
         <div><i class="fa-solid fa-fire"></i></div>
         <p>Trending</p>
       </div>
     </a>
 
-    <a class="filter-link" href="/listings/filter">
+    <a class="filter-link" href="/listings/category/Rooms">
       <div class="filter">
         <div><i class="fa-solid fa-bed"></i></div>
         <p>Rooms</p>
       </div>
     </a>
 
-    <a class="filter-link" href="/listings/filter">
+    <a class="filter-link" href="/listings/category/IconicCity">
       <div class="filter">
         <div><i class="fa-solid fa-mountain-city"></i></div>
         <p>Iconic Cities</p>
       </div>
     </a>
 
-    <a class="filter-link" href="/listings/filter">
+    <a class="filter-link" href="/listings/category/Mountains">
       <div class="filter">
         <div><i class="fa-solid fa-mountain-city"></i></div>
         <p>Mountain</p>
-      </div>
-    </a>
-
-    <a class="filter-link" href="/listings/filter">
-      <div class="filter">
-        <div><i class="fa-brands fa-fort-awesome"></i></div>
-        <p>Castles</p>
-      </div>
-    </a>
-
-    <a class="filter-link" href="/listings/filter">
-      <div class="filter">
-        <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing Pools</p>
-      </div>
-    </a>
-
-    <a class="filter-link" href="/listings/filter">
-      <div class="filter">
-        <div><i class="fa-solid fa-campground"></i></div>
-        <p>Camping</p>
-      </div>
-    </a>
-
-    <a class="filter-link" href="/listings/filter">
-      <div class="filter">
-        <div><i class="fa-solid fa-snowflake"></i></div>
-        <p>Arctic</p>
-      </div>
-    </a>
-
-    <a class="filter-link" href="/listings/filter">
-      <div class="filter">
-        <div><i class="fa-solid fa-cow"></i></div>
-        <p>Farm</p>
-      </div>
-    </a>
-
-    <a class="filter-link" href="/listings/filter">
-      <div class="filter">
-        <div><i class="fa-solid fa-igloo"></i></div>
-        <p>Domes</p>
-      </div>
-    </a>
-
-    <a class="filter-link" href="/listings/filter">
-      <div class="filter">
-        <div><i class="fa-solid fa-city"></i></div>
-        <p>Top Cities</p>
       </div>
     </a>
 

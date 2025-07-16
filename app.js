@@ -12,10 +12,9 @@ const ExpressError = require("./utils/ExpressError");
 const session = require("express-session");
 // connect-mongo
 const MongoStore = require("connect-mongo");
-const Listing = require("./models/listing.js");
 const flash = require("connect-flash");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
+const passport = require("passport"); //Passport is Express-compatible authentication middleware for Node.js
+const LocalStrategy = require("passport-local"); //Passport strategy for authenticating with a username and password.
 const User = require("./models/user.js");
 
 const listingRouter = require("./routes/listing.js");
@@ -48,7 +47,7 @@ const store = MongoStore.create({
   crypto: {
     secret: process.env.SECRET,
   },
-  touchAfter: 24 * 3600, //Interval (in seconds) between session updates
+  touchAfter: 24 * 3600, //<<<<<<<<<<-------------Interval (in seconds) between session updates
 });
 
 store.on("error", () => {
@@ -82,18 +81,9 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currUser = req.user;
-  next();
-});
+  res.locals.currUser = req.user; // <<<<<<<<<<<<<-----Make `user` and `authenticated` available in templates
 
-app.get("/listings/search", async (req, res) => {
-  const searchTerm = req.query.search; // For GET requests
-  // console.log("Search term:", searchTerm);
-  if (searchTerm === "mountains") {
-    const listing = await Listing.findById("67e984a14f1b8210332aabcd");
-    console.log(listing);
-    res.render("ListingImg.ejs", { listing });
-  }
+  next();
 });
 
 app.use("/listings", listingRouter);

@@ -15,6 +15,11 @@ let listingSchema = new Schema({
   price: Number,
   location: String,
   country: String,
+  category: {
+    type: String,
+    enum: ["Trending", "Rooms", "Iconic Cities", "Mountains"],
+    required: true,
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
@@ -27,9 +32,16 @@ let listingSchema = new Schema({
       ref: "User",
     },
   ],
-  category: {
-    type: String,
-    enum: ["mointains", "farms", "arctic", "desert", "camping"],
+  geometry: {
+    type: {
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ["Point"], // 'location.type' must be 'Point'
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
   },
 });
 

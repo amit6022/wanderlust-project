@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const Listing = require("../models/listing.js");
 const { isLoggedIn, checkOwner, validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listings.js");
 const multer = require("multer");
@@ -20,8 +19,19 @@ router
 
 //New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
-//filter
-router.get("/filter", wrapAsync(listingController.ListingFilter));
+//category Route
+router.get(
+  "/category/IconicCity",
+  wrapAsync(listingController.ListingIconicCity)
+);
+router.get("/category/Trending", wrapAsync(listingController.ListingTrending));
+router.get("/category/Rooms", wrapAsync(listingController.ListingRooms));
+router.get(
+  "/category/Mountains",
+  wrapAsync(listingController.ListingMountains)
+);
+//Search Route
+router.get("/search", wrapAsync(listingController.SearchListings));
 
 router
   .route("/:id")
